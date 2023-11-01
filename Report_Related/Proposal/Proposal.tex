@@ -20,7 +20,7 @@
 \IEEEauthorblockA{\textit{Department of Electrical and Computer Engineering} \\
 \textit{University of California San Diego}\\
 San Diego \\
-Emails: {xuc054, chl248}@ucsd.edu}
+Emails: {shz094,y4bi, chl248}@ucsd.edu}
 
 }
 
@@ -31,16 +31,22 @@ With the realization of the Low Earth Orbit (LEO) Satellite Network, massive sat
 
 This project aims to investigate the impact of routing topology and TCP/IP-based protocols on the performance of LEO Satellite Networks. We will delve into a range of design variables associated with LEO Satellite Networks, including satellite connection stability, latency between satellites, latency between satellites and terrestrial ground stations, as well as network capacity and throughput. The consistent connection of satellites presents challenges due to their high mobility[2]. The dynamic movement of satellites can introduce instabilities across different network layers, making it difficult to maintain a seamless connection over time. Additionally, the long-distance connections between satellites can adversely affect low-latency communication between different network layers, thus diminishing overall low-latency performance across the network system.
 
-Design variables in the routing topology will be discussed and explored through the utilization of an emulator[3] and various routing topology papers. Various TCP/IP-based protocol designs will also be evaluated if time is allowed. Discovery and Insights will be provided and summarized.
+Design variables in the routing topology will be discussed and explored through the utilization of an emulator[3] and various routing topology papers. Various TCP/IP-based protocol designs will also be evaluated. Discovery and Insights will be provided and summarized.
 
 
 \section{Related work}
+Our research is based on the paper titled "STARRYNET: Empowering Researchers to Evaluate Futuristic Integrated Space and Terrestrial Networks"[3] from NSDI 2023 spring. This paper primarily delves into StarryNet, a simulation software designed for integrated space and terrestrial networks (ISTN). Within this paper, the authors conducted a comparative analysis of various tools, including live LSNs, simulators, and emulators. They identified several shortcomings in these tools, such as inconsistent constellations, unrealistic system and networking stack representations, limited flexibility, and relatively high costs. StarryNet, on the other hand, addresses many of these issues by leveraging a combination of real-data traces, model-based simulation, and large-scale emulation. The paper presents extensive performance testing of the StarryNet system, demonstrating its capability to meet multiple experimental requirements for ISTN. However, StarryNet is not without its limitations. It relies on parameters obtained from public networks, which may sometimes lack credibility, necessitating manual parameter adjustments. Additionally, it falls short in fully simulating the physical (PHY) layer of the network.
 
-% \subsection{Maintaining the Integrity of the Specifications}
+There is also work done for other layers of the ISTN optimization such as transport layer, network layer, and link layer.[2] In the article SaTCP: Link-Layer Informed TCP Adaptation for Highly Dynamic LEO Satellite Network, an improved TCP/IP protocol specifically for LEO networks is proposed. In this research, the Hypatia simulator is used, which provides a realistic enough and adequate amount of functions for layers from link layer to transport layer. We will also try to test those improvements in the new simulator and try to improve the overall latency and throughput of the proposed ISTN.
 
 
 
 \section{Project introduction}
+Our primary goal is to replicate the performance evaluation from STARRYNET, serving a dual purpose: verifying the simulator's credibility and identifying methodologies to obtain more credible parameters for simulations. Additionally, we seek to refine various approaches to simulating the PHY layer of the ISTN. This involves a comprehensive review of alternative simulators to discern their parameter acquisition methodologies. Our research endeavors aim to augment the PHY layer's simulation, followed by a meticulous parameter calibration. Post-simulation validation, we will venture into advanced methods such as SaTCP to improve the overall performance of the ISTN.
+
+To rigorously assess the efficacy of different strategies in our projects, we intend to deploy an array of satellite network simulators. Primarily, we will harness the capabilities of StarreyNet [4]. This simulator stands out because of its versatility in allowing customization of both the constellation and ground station. Additionally, its real-time routing feature within a specified time frame provides invaluable insights. By conceptualizing each router as a node, it becomes feasible to analyze and validate parameters such as availability, bandwidth, loss, and the dynamic routing states of these nodes. Our goal is to replicate certain performance metrics using this tool, notably the average CPU percentage, average memory percentage, and latency as articulated in the StarryNet publication.
+
+In addition to the aforementioned simulators, we are also contemplating the utilization of StarPerf[5], Hypatia[S6] and SILLEO Scans[7]. These tools will enable a deeper exploration into the intricacies of network topologies and designs, providing insights into their subsequent impacts on communication network performance.
 
 
 
@@ -48,25 +54,26 @@ Design variables in the routing topology will be discussed and explored through 
 
 
 \begin{itemize}
-\item Oct 16-22:
-\item Oct 23-29:
-\item Oct 30-Nov 5:
-\item Nov 6-12:
-\item Nov 13-19:
-\item Nov 20-26:
-\item Nov 27-Dec 3:
-\item Dec 4-10:
-\item Dec 11-15:
+\item Oct 16-22: Proposal + Research on different simulators (Each team member keeps researching papers in detail)
+\item Oct 23-29: Install and run simulators (All team members)
+\item Oct 30-Nov 5: (Milestone 1) Compare simulators  (StarryNet, Hypatia, StarPerf respectively)
+ \item Nov 6-12: Presentation + Reinvestigate StarryNet models (All team member)
+\item Nov 13-19: (Milestone 2) Improve parameter fetching for StarryNet  (Find sources, Fetch sources, Test result, respectively)
+\item Nov 20-26: Explore optimizations (All team members, one option each)
+\item Nov 27-Dec 3: (Milestone 3) Implement optimizations  (One option each)
+\item Dec 4-10: Wrap up + Final Report
+\item Dec 11-15: Final Presentation
+
 \end{itemize}
 
 \begin{thebibliography}{00}
 \bibitem{b1} Bhattacherjee, D.,  Singla, A. (2019, December). Network topology design at 27,000 km/hour. In Proceedings of the 15th International Conference on Emerging Networking Experiments And Technologies (pp. 341-354).
 \bibitem{b2} Cao, X.,  Zhang, X. (2023, May). SaTCP: Link-Layer Informed TCP Adaptation for Highly Dynamic LEO Satellite Networks. In IEEE INFOCOM 2023-IEEE Conference on Computer Communications (pp. 1-10). IEEE.
 \bibitem{b3}  Lai, Z., Li, H., Deng, Y., Wu, Q., Liu, J., Li, Y., ...  Wu, J. (2023). {StarryNet}: Empowering Researchers to Evaluate Futuristic Integrated Space and Terrestrial Networks. In 20th USENIX Symposium on Networked Systems Design and Implementation (NSDI 23) (pp. 1309-1324).
-\bibitem{b4} 
-\bibitem{b5} 
-\bibitem{b6} 
-\bibitem{b7} 
+\bibitem{b4} Starrey Net, https://github.com/SpaceNetLab/StarryNet\#what-are-the-components
+\bibitem{b5} Lai, Z., Li, H., \& Li, J. (2020, October). Starperf: Characterizing network performance for emerging mega-constellations. In 2020 IEEE 28th International Conference on Network Protocols (ICNP) (pp. 1-11). IEEE.
+\bibitem{b6} Kassing, S., Bhattacherjee, D., Águas, A. B., Saethre, J. E., \& Singla, A. (2020, October). Exploring the" Internet from space" with Hypatia. In Proceedings of the ACM Internet Measurement conference (pp. 214-229).
+\bibitem{b7} Kempton, B. S. (2020). A simulation tool to study routing in large broadband satellite networks. Christopher Newport University.
 \end{thebibliography}
 
 
